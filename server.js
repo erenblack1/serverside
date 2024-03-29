@@ -6,8 +6,13 @@ const cors = require('cors')
 const userRoutes = require('./Routes/userRoutes')
 
 app.use(cors({
-    origin: "http://localhost:5173"
+    origin: "https://eshaara.netlify.app"
 }))
+
+app.use((req, res, next) => {
+  res.setHeader('Content-Security-Policy', "default-src 'self' *;");
+  next();
+});
 
 app.use(fileUpload())
 
