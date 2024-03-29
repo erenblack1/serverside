@@ -14,6 +14,14 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(express.static(path.join(__dirname, '../dist')));
+
+// Catch-all route for the frontend
+app.get('*', (req, res) => {
+    // Redirect to the frontend URL
+    res.redirect('https://auraview.netlify.app');
+});
+
 app.use(fileUpload())
 
 app.use(express.json())
