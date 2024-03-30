@@ -6,9 +6,7 @@ const app = express();
 const cors = require('cors')
 const userRoutes = require('./Routes/userRoutes')
 
-app.use(cors({
-    origin: "https://eshaara.netlify.app/"
-}))
+app.use(cors())
 
 app.use((req, res, next) => {
   res.setHeader('Content-Security-Policy', "default-src 'self' *;");
@@ -17,11 +15,7 @@ app.use((req, res, next) => {
 
 app.use(express.static(path.join(__dirname, '../dist')));
 
-// Catch-all route for the frontend
-app.get('*', (req, res) => {
-    // Redirect to the frontend URL
-    res.redirect('https://eshaara.netlify.app/');
-});
+
 
 app.use(fileUpload())
 
