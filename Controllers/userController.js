@@ -99,13 +99,13 @@ const updateNumbers = async (req, res) => {
 }
 const updateWords = async (req, res) => {
     const userId = req.params.userid
-    const words = req.body
+    const {words, data} = req.body
     try {
-        const editWords = await User.findByIdAndUpdate(userId, {words}, {new: true});
+        const editWords = await User.findByIdAndUpdate(userId, {data, words}, {new: true});
 
         if(!editWords) return res.status(404).json("The package is not found")
 
-        res.status.send(editWords)
+        return res.status(200).send("success)
     } catch (error) {
         res.status(500).json(error);
     }
